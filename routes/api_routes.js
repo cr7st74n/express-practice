@@ -3,27 +3,29 @@ const { response, json } = require("express");
 const fs =require("fs");
 const path = require("path");
 
+
+function getTodoData(){
+    return fs.promises.readFile(path.join(__dirname,"../db/todos.json"),"utf8")
+    .then(data => JSON.parse(data));
+}
+
 router.get("/todos", (req,res)=>{
-
-    fs.readFile(path.join(__dirname,"../db/todos.json"),"utf8",(err, data)=>{
-        if(err) return console.log(err);
-
-        res.json(JSON.parse(data));
-    });
-    // res.json({
-    //     name: "Cris",
-    //     age : 23,
-    // });
-
+    getTodoData()
+    .then(todo_data =>{
+        res.json(todo_data);
+    })
+    .catch(err => console.log(err));
 });
 
+
+
 router.post("/todos",(req,res)=>{
+    console.log(req.body);
     res.json({
-        name: "Lucho",
-        age:23,
+        messege: "Todo recived!"
     })
 
-})
+});
 
 
 
