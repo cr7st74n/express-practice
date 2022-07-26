@@ -7,11 +7,10 @@ const path = require("path");
 const todo_router = require("./routes/api_routes");
 
 //Share Static/Browser Files
-
 app.use(express.static(path.join(__dirname, "browser")));
-
+// Attach client side form datea to request.body object
 app.use(express.urlencoded({extended: true}))
-
+app.use(express.json());
 //Load Routers 
 app.use("/api", todo_router);
 
