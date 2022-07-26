@@ -73,5 +73,4 @@ function deleteDoto(event){
 
 getTodos();
 btnS.addEventListener("click",addTodo);
-
 todos_div.addEventListener("click",deleteDoto);

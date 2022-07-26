@@ -54,11 +54,22 @@ router.post("/todos",(req,res)=>{
 
 router.delete("/todo",(req ,res)=>{
     getTodoData()
-    .then
+    .then(todos =>{
+        const id = request.body.id;
+        const obj = todos.find(todo => todo.id === id);
+        const index = todos.indexOf(obj);
+
+        todos.splice(index, 1);
+
+        fs.promises.writeFile(db_path,
+            JSON.stringify(todos,null,2))
+            .then(()=>{
+                console.log("todos deleted successfully");
+                response.json(todos);
+            })
+            .catch(err => console.log(err));
+    })
 });
-    
-
-
 
 module.exports = router;
 
