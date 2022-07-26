@@ -1,0 +1,29 @@
+
+h1{
+    color: blue;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+    text-decoration: underline;
+    background-color: crimson;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+
+}
+
+#welcome{
+    color: cornflowerblue;
+    background-color: black;
+}
+
+#submit{
+    color: beige;
+    background-color: black;
+    
+}
+
+

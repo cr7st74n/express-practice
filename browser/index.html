@@ -10,18 +10,18 @@
 
 </head>
 <body>
-
-
     <h1>ToDo app Example </h1>
-    <p>Hello welcome to the app</p>
+    <p id="welcome">Hello welcome to the app</p>
 
-    <div class="todos"></div>
-
-    <form action="/api/todos" method="post">
+    <form action="/api/todos" method="POST">
         <input type="text" name="something">
         <button id="submit">Submit</button>
     </form>
     
+    <h2>To Dos</h2>
+
+    <div class="todos"></div>
+
     <script src="./js/browser.js"></script>
 </body>
 </html>
