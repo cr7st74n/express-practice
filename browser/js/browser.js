@@ -24,6 +24,7 @@ function getTodos(){
     });
 }
 
+
 function addTodo(event){
     const input = document.querySelector('input[name="something"]');
     const value =input.value;
