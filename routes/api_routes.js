@@ -5,6 +5,20 @@ const fs =require("fs");
 const path = require("path");
 const {v4:uuid} = require("uuid"); 
 const db_path = path.join(__dirname,"../db/todos.json");
+const mysql = require("mysql2");
+
+const connection = mysql.createPool({
+    host: "localhost",
+    database: "class_express",
+    user: "root",
+    password: "12Mnjcgr."
+});
+
+connection.query('SELECT * FROM todos', (err,data)=>{
+    if(err) return console.log(err);
+
+    console.log(data);
+});
 
 
 function getTodoData(){
