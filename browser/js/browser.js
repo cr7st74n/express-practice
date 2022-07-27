@@ -4,6 +4,11 @@ const todos_div = document.querySelector(".todos");
 function outputToDos(data){
 
     todos_div.innerHTML = "";
+
+    if (!data.length) {
+        todos_div.innerHTML = '<p>No ToDos Added Yet.</p>';
+      }
+
     data.forEach((obj) => {
         const html=`
         <div class="todo">
@@ -42,8 +47,8 @@ function addTodo(event){
         body: JSON.stringify(data)
     }).then(res => res.json())
     .then(todos =>{
-        getTodos();
-        console.log(todos);
+        input.value="";
+        outputToDos(todos);
     })
 }
 function deleteDoto(event){
@@ -54,11 +59,10 @@ function deleteDoto(event){
     if(el.tagName === "BUTTON"){
         const id = el.dataset.id;
         const data = {
-            id: parseInt(id),
-            
-        }
+            id: id
+        };
 
-        fetch("/api/todos",{
+        fetch('/api/todos',{
             method: "delete",
             headers: {
                 'Accept': 'application/json',
@@ -72,5 +76,7 @@ function deleteDoto(event){
 }
 
 getTodos();
+
 btnS.addEventListener("click",addTodo);
 todos_div.addEventListener("click",deleteDoto);
+

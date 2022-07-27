@@ -1,30 +1,14 @@
 [
   {
-    "id": 1,
-    "text": "pick up groceries"
-  },
-  {
-    "id": 2,
-    "text": "do the laundry......."
-  },
-  {
     "text": "test",
-    "id": 3
+    "id": 1
+  },
+  {
+    "text": "xfgds",
+    "id": 2
   },
   {
     "text": "cr7ston",
-    "id": 4
-  },
-  {
-    "text": "test",
-    "id": 5
-  },
-  {
-    "text": "hey!",
-    "id": 6
-  },
-  {
-    "text": "xxx",
-    "id": 7
+    "id": 3
   }
 ]

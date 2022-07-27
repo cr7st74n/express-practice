@@ -1,8 +1,9 @@
 const router = require("express").Router();
-const { response, json } = require("express");
+//const { response, json } = require("express");
 const fs =require("fs");
-const { request } = require("http");
+//const { request } = require("http");
 const path = require("path");
+const {v4:uuid} = require("uuid"); 
 const db_path = path.join(__dirname,"../db/todos.json");
 
 
@@ -11,6 +12,8 @@ function getTodoData(){
     .then(data => JSON.parse(data));
 }
 
+// Get All Todos
+// localhost:3333/api/todos
 router.get("/todos", (req,res)=>{
     getTodoData()
     .then(todo_data =>{
@@ -28,12 +31,10 @@ router.post("/todos",(req,res)=>{
     getTodoData()
     .then(todo_data =>{
         const new_todo =req.body;
-        console.log("request body "+new_todo);
-
-        const reference_id = todo_data[todo_data.length - 1].id;
-        new_todo.id =reference_id+1;
-        console.log("index array "+reference_id);
-
+        new_todo.id = uuid().slice(0,4);
+        const reference_id = todo_data.length ? todo_data[todo_data.length - 1].id : 0;
+      
+        new_todo.id = reference_id + 1
         todo_data.push(new_todo);
 
         fs.promises.writeFile(db_path, JSON.stringify(todo_data,null,2))
@@ -55,22 +56,23 @@ router.post("/todos",(req,res)=>{
 router.delete("/todo",(req ,res)=>{
     getTodoData()
     .then(todos =>{
-        const id = request.body.id;
+        const id = req.body.id;
         const obj = todos.find(todo => todo.id === id);
         const index = todos.indexOf(obj);
 
         todos.splice(index, 1);
 
-        fs.promises.writeFile(db_path,
-            JSON.stringify(todos,null,2))
+        fs.promises.writeFile(db_path,JSON.stringify(todos,null,2))
             .then(()=>{
                 console.log("todos deleted successfully");
-                response.json(todos);
+                res.json(todos);
             })
             .catch(err => console.log(err));
     })
 });
 
-module.exports = router;
+router.get("/todos/:id", (req,res)=>{
+    console.log(req.params.id);
+})
 
-console.log("test");
+module.exports = router;
