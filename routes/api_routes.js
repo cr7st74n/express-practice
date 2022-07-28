@@ -16,8 +16,7 @@ const connection = mysql.createPool({
 
 connection.query('SELECT * FROM todos', (err,data)=>{
     if(err) return console.log(err);
-
-    console.log(data);
+    console.log(data +"data ");
 });
 
 
