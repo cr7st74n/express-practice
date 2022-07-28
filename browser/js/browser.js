@@ -50,7 +50,7 @@ function addTodo(event){
     .then(todos =>{
         input.value="";
         outputToDos(todos);
-    })
+    });
 }
 function deleteDoto(event){
     const el = event.target
@@ -60,7 +60,7 @@ function deleteDoto(event){
     if(el.tagName === "BUTTON"){
         const id = el.dataset.id;
         const data = {
-            id: id
+            id: parseInt(id)
         };
 
         fetch('/api/todos',{

@@ -53,7 +53,7 @@ router.post("/todos",(req,res)=>{
 
 //localhost DELETE request to the Database.
 
-router.delete("/todo",(req ,res)=>{
+router.delete("/todos",(req ,res)=>{
     getTodoData()
     .then(todos =>{
         const id = req.body.id;
