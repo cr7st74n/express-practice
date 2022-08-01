@@ -1,4 +1,4 @@
-const { response } = require("express");
+//const { response } = require("express");
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3333;
@@ -15,6 +15,10 @@ app.use(express.json());
 app.use("/api", todo_router);
 
 //start server
+
+app.use("api", (req,res)=>{
+    res.send("hola");
+});
 
 
 app.listen(PORT, ()=>{
