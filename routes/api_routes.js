@@ -30,7 +30,8 @@ router.get("/todos", (req,res)=>{
 router.post("/todos",(req,res)=>{
     getTodoData()
     .then(todo_data =>{
-        const new_todo =req.body;
+        const new_todo = req.body;
+        console.log(new_todo);
         new_todo.id = uuid().slice(0,4);
         const reference_id = todo_data.length ? todo_data[todo_data.length - 1].id : 0;
       
