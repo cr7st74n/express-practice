@@ -12,7 +12,7 @@ function outputToDos(data){
     data.forEach((obj) => {
         const html=`
         <div class="todo">
-            <h3>${obj.text}</h3>
+            <h3>${obj.words}</h3>
             <button data-id="${obj.id}">Delete</button>
         </div>
         `;
@@ -34,7 +34,7 @@ function addTodo(event){
     const input = document.querySelector('input[name="something"]');
     const value =input.value;
     const data = {
-        text: value
+        words: value
     };
 
     event.preventDefault();
