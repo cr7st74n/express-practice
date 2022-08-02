@@ -31,21 +31,8 @@ router.post("/todos",(req,res)=>{
 //localhost DELETE request to the Database.
 
 router.delete("/todos",(req ,res)=>{
-    getTodoData()
-    .then(todos =>{
-        const id = req.body.id;
-        const obj = todos.find(todo => todo.id === id);
-        const index = todos.indexOf(obj);
 
-        todos.splice(index, 1);
-
-        fs.promises.writeFile(db_path,JSON.stringify(todos,null,2))
-            .then(()=>{
-                console.log("todos deleted successfully");
-                res.json(todos);
-            })
-            .catch(err => console.log(err));
-    })
+    
 });
 
 router.get("/todos/:id", (req,res)=>{
