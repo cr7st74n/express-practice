@@ -1,10 +1,10 @@
 const mysql = require("mysql2");
 const is_on_heroku = process.env.NODE_ENV === "production";
 const connection_data = is_on_heroku ? {
-    host: "y6aj3qju8efqj0w1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    database: "fcd4c91bnakqgth9",
-    user: "xha5y4c1b3qhhphf",
-    password:'f8y3h7hzgtd2nwnm'
+    host: process.env.host,
+    database: process.env.database,
+    user: process.env.user,
+    password: process.env.password
 }: {
     host: "localhost",
     database: "class_expresss1",
