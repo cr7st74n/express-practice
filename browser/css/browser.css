@@ -1,3 +1,6 @@
+body{
+    overflow-x: hidden;
+}
 
 h1{
     color: blue;
@@ -24,6 +27,22 @@ h2{
     color: beige;
     background-color: black;
     
+}
+
+.messege-bar{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgb(12, 122, 98);
+    color: white;
+    padding: 10px 25px;
+    transform: translateX(100%);
+    transition: transform .5s;
+}
+
+.messege-bar.show{
+    transform: translateX(0);
+
 }
 
 

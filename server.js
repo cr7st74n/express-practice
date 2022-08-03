@@ -11,6 +11,15 @@ app.use(express.static(path.join(__dirname, "browser")));
 // Attach client side form datea to request.body object
 app.use(express.urlencoded({extended: true}))
 app.use(express.json());
+
+//I the request from our client do not find the index.html, we can sentFile to our diferent HTML.
+app.get("/",(req,res)=>{
+    res.sendFile(path.join(__dirname, "browser/cr7.html"))
+});
+
+app.get("/cr7ston",(req,res)=>{
+    res.sendFile(path.join(__dirname, "views/view.html"))
+});
 //Load Routers 
 app.use("/api", todo_router);
 
