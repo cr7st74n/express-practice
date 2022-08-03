@@ -1,8 +1,13 @@
 USE class_expresss1;
 
--- INSERT INTO todos1 (words) VALUES
---   ("first todo"),
---   ("second todo"),
---   ("third todo");
+ INSERT INTO project_groups (group_name) VALUES
+ ("LosEscarabajos"),
+ ("Batmans"),
+ ("Advengers");
 
-DELETE FROM todos1  WHERE id = 1;
+ INSERT INTO Students (student_name, group_id) VALUES
+("cris",1),
+("Lucho",1),
+("chino",1),
+("Natt",3),
+("soul",3);
