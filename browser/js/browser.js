@@ -1,15 +1,17 @@
 const btnS = document.querySelector("#submit");
 const todos_div = document.querySelector(".todos");
+const messege = document.querySelector(".messege-bar");
+let  todo_data;
 
-function outputToDos(data){
+function outputToDos(){
 
     todos_div.innerHTML = "";
 
-    if (!data.length) {
+    if (!todo_data.length) {
         todos_div.innerHTML = '<p>No ToDos Added Yet.</p>';
       }
 
-    data.forEach((obj) => {
+      todo_data.forEach((obj) => {
         const html=`
         <div class="todo">
             <h3>${obj.words}</h3>
@@ -25,7 +27,8 @@ function getTodos(){
     fetch("/api/todos")
     .then(res => res.json())
     .then(data => {
-        outputToDos(data);
+        todo_data = data;
+        outputToDos();
     });
 }
 
@@ -33,7 +36,7 @@ function getTodos(){
 function addTodo(event){
     const input = document.querySelector('input[name="something"]');
     const value =input.value;
-    const data = {
+    const new_todo = {
         words: value
     };
 
@@ -45,13 +48,27 @@ function addTodo(event){
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(new_todo)
     }).then(server_res => server_res.json())
-    .then(server_res =>{
-        input.value="";
-        outputToDos(server_res);
+    .then(info =>{
+        show_messege(info.messege);
+        new_todo.id = info.id
+        todo_data.push(new_todo);
+        input.value = "";
+        outputToDos();
     });
 }
+
+function show_messege(mess){
+    messege.innerText =mess;
+    messege.classList.add("show");
+
+    setTimeout(()=>{
+        messege.classList.remove("show");
+    },3500)
+}
+
+
 function deleteDoto(event){
     const el = event.target
 
@@ -71,7 +88,13 @@ function deleteDoto(event){
             },
             body: JSON.stringify(data)
         }).then(res => res.json())
-        .then(todos => outputToDos(todos));
+        .then((info) => {
+            show_messege(info.messege);
+            const todo = todo_data.find(t=> t.id==id);
+            const index = todo_data.indexOf(todo);
+            todo_data.splice(index,1);
+            outputToDos();
+        });
     }
 
 }
