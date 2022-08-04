@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3333;
 const path = require("path");
+const db = require("./db/connection")
 //import our routes 
 const todo_router = require("./routes/api_routes");
 
@@ -25,8 +26,11 @@ app.use("/api", todo_router);
 
 //start server
 
-
-app.listen(PORT, ()=>{
-    console.log(`Listening on port ${PORT}`);
+db.sync({force:true})
+.then(()=>{
+    app.listen(PORT, ()=>{
+        console.log(`Listening on port ${PORT}`);
+    })
 })
+
 
