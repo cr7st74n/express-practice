@@ -1,4 +1,4 @@
-USE class_expresss1;
+USE class_expresss1_assoc;
 
  INSERT INTO project_groups (group_name) VALUES
  ("LosEscarabajos"),

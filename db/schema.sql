@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS class_expresss1;
+DROP DATABASE IF EXISTS class_expresss1_assoc;
 
-CREATE DATABASE class_expresss1;
+CREATE DATABASE class_expresss1_assoc;
 
-USE class_expresss1;
+USE class_expresss1_assoc;
 
 CREATE TABLE project_groups(
     group_id INT AUTO_INCREMENT PRIMARY KEY,
