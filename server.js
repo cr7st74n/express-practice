@@ -22,15 +22,15 @@ app.get("/cr7ston",(req,res)=>{
     res.sendFile(path.join(__dirname, "views/view.html"))
 });
 //Load Routers 
-app.use("/api", todo_router);
+app.use("/", todo_router);
 
 //start server
 
-db.sync({force:true})
+db.sync({force: false}) //alter another method to restart the server
 .then(()=>{
     app.listen(PORT, ()=>{
         console.log(`Listening on port ${PORT}`);
-    })
-})
+    });
+});
 
 
